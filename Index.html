@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiffany ✨ Dancing Through Life</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2d2d2d;
+            --light-gray: #8a8a8a;
+            --off-white: #f5f5f5;
+            --white: #ffffff;
+            --accent: #ff6b9d;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 50%, var(--medium-gray) 100%);
+            color: var(--white);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--white), var(--accent));
+            z-index: 10000;
+            transition: width 0.1s;
+        }
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            animation: float-shape 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--white);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            border: 3px solid var(--light-gray);
+            top: 60%;
+            right: 10%;
+            transform: rotate(45deg);
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float-shape {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '✨';
+            position: absolute;
+            right: -30px;
+            top: -5px;
+            font-size: 1.2rem;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--off-white);
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            padding: 120px 20px 100px;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 4s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1;
+            letter-spacing: -3px;
+            animation: shimmer 3s infinite;
+            text-shadow: 0 0 40px rgba(255,255,255,0.1);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .sub-text {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            opacity: 0.8;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+            transition: left 0.5s;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+            background: var(--off-white);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 3px solid var(--white);
+            color: var(--white);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: particle-float 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Socials Section */
+        .socials {
+            padding: 120px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .social-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--white);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .social-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .social-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .social-card:hover .social-icon-wrapper {
+            transform: scale(1.1) rotate(10deg);
+            background: var(--white);
+        }
+
+        .social-card h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .social-handle {
+            font-size: 1rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .social-card p {
+            color: var(--off-white);
+            opacity: 0.8;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 35px;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            border: 2px solid var(--white);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .follow-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .follow-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .follow-btn:hover {
+            color: var(--black);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .follow-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Wishlist Section */
+        .wishlist {
+            padding: 120px 50px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.02), transparent);
+            position: relative;
+            z-index: 1;
+        }
+
+        .wishlist-header {
+            text-align: center;
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wishlist-label {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .wishlist-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .wishlist-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        .wishlist-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .wishlist-container::before {
+            content: '🎯';
+            position: absolute;
+            top: -30px;
+            right: 50px;
+            font-size: 4rem;
+            animation: bounce-gift 2s infinite;
+        }
+
+        @keyframes bounce-gift {
+            0%, 100% { transform: translateY(0) rotate(-10deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .wishlist-intro {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .wishlist-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: var(--white);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .wishlist-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .wishlist-item:hover {
+            transform: translateX(15px);
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .wishlist-item.active {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .item-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .wishlist-item:hover .item-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-content h4 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .item-content p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .item-price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 8px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .wishlist-item.active .item-price {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .item-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .wishlist-item:hover .item-badge {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .tap-hint {
+            text-align: center;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* PayPal Button Section */
+        .paypal-section {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .paypal-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .paypal-text {
+            color: var(--light-gray);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .paypal-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0, 112, 186, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .paypal-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .paypal-button:hover::before {
+            left: 100%;
+        }
+
+        .paypal-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 112, 186, 0.4);
+            background: linear-gradient(135deg, #0070ba 0%, #004c8c 100%);
+        }
+
+        .paypal-icon {
+            font-size: 1.5rem;
+        }
+
+        .paypal-heart {
+            color: #ff6b9d;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 100px 50px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(to top, var(--black), transparent);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .dance-emoji {
+            font-size: 3.5rem;
+            display: inline-block;
+            animation: dance 2s infinite;
+            margin: 0 15px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        }
+
+        @keyframes dance {
+            0%, 100% { transform: rotate(-10deg) translateY(0); }
+            25% { transform: rotate(10deg) translateY(-20px); }
+            50% { transform: rotate(-10deg) translateY(0); }
+            75% { transform: rotate(10deg) translateY(-10deg); }
+        }
+
+        .footer-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .footer-subtext {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            color: var(--light-gray);
+        }
+
+        .footer-bottom {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.6;
+            color: var(--light-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                font-size: 0.85rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+                letter-spacing: -1px;
+            }
+
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .socials, .wishlist {
+                padding: 80px 20px;
+            }
+
+            .section-title, .wishlist-title {
+                font-size: 2.5rem;
+            }
+            
+            .wishlist-container {
+                padding: 30px 20px;
+            }
+
+            .wishlist-container::before {
+                right: 20px;
+                font-size: 3rem;
+            }
+            
+            .wishlist-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 25px;
+            }
+            
+            .item-icon {
+                margin-right: 0;
+            }
+            
+            .item-badge {
+                margin-top: 10px;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dance-emoji {
+                font-size: 2.5rem;
+                margin: 0 10px;
+            }
+
+            .paypal-button {
+                padding: 18px 35px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--white);
+            animation: loader-pulse 1.5s infinite;
+        }
+
+        @keyframes loader-pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-text">Tiffany ✨</div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="progress-bar" id="progress-bar"></div>
+
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Tiffany</div>
+        <ul class="nav-links">
+            <li><a href="#home">home</a></li>
+            <li><a href="#socials">socials</a></li>
+            <li><a href="#wishlist">wishlist</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="particles" id="particles"></div>
+        
+        <div class="hero-content">
+            <h1>Tiffany</h1>
+            <p class="tagline">dancing through life</p>
+            <p class="sub-text">dancer • content creator • korea</p>
+            
+            <div class="cta-container">
+                <a href="#socials" class="cta-button">
+                    <span>follow my journey</span>
+                    <span>✨</span>
+                </a>
+                <a href="https://www.tiktok.com/@5ugyeom" target="_blank" class="cta-button secondary">
+                    <span>watch me dance</span>
+                    <span>🎬</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Socials Section -->
+    <section class="socials" id="socials">
+        <div class="section-header reveal">
+            <div class="section-label">connect</div>
+            <h2 class="section-title">find me here</h2>
+        </div>
+        
+        <div class="social-grid">
+            <!-- Instagram -->
+            <div class="social-card reveal">
+                <div class="social-icon-wrapper">📸</div>
+                <h3>instagram</h3>
+                <div class="social-handle">@5ugyeom</div>
+                <p>dance videos & lifestyle content<br>behind the scenes & daily moments</p>
+                <a href="https://www.instagram.com/5ugyeom" target="_blank" class="follow-btn">
+                    <span>follow</span>
+                    <span>→</span>
+                </a>
+            </div>
+            
+            <!-- TikTok -->
+            <div class="social-card reveal">
+                <div class="social-icon-wrapper">🎵</div>
+                <h3>tiktok</h3>
+                <div class="social-handle">@5ugyeom</div>
+                <p>dance trends & tutorials<br>fun content & challenges</p>
+                <a href="https://www.tiktok.com/@5ugyeom" target="_blank" class="follow-btn">
+                    <span>follow</span>
+                    <span>→</span>
+                </a>
+            </div>
+            
+            <!-- YouTube -->
+            <div class="social-card reveal">
+                <div class="social-icon-wrapper">📺</div>
+                <h3>youtube</h3>
+                <div class="social-handle">@dancingtiffany0208</div>
+                <p>dance performances & vlogs<br>full routines & practice videos</p>
+                <a href="https://www.youtube.com/@dancingtiffany0208" target="_blank" class="follow-btn">
+                    <span>subscribe</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wishlist Section -->
+    <section class="wishlist" id="wishlist">
+        <div class="wishlist-header reveal">
+            <div class="wishlist-label">support</div>
+            <h2 class="wishlist-title">my goals</h2>
+        </div>
+        
+        <div class="wishlist-container reveal">
+            <p class="wishlist-intro">professional dance courses & practice space</p>
+            <p class="tap-hint">tap an item to see details</p>
+            
+            <div class="wishlist-item" onclick="togglePrice(this)">
+                <div class="item-icon">💃</div>
+                <div class="item-content">
+                    <h4>contemporary jazz</h4>
+                    <p>professional dance course</p>
+                    <div class="item-price">$200 • 4 classes</div>
+                </div>
+                <div class="item-badge">4 classes</div>
+            </div>
+            
+            <div class="wishlist-item" onclick="togglePrice(this)">
+                <div class="item-icon">🕺</div>
+                <div class="item-content">
+                    <h4>wacking</h4>
+                    <p>professional dance course</p>
+                    <div class="item-price">$200 • 4 classes</div>
+                </div>
+                <div class="item-badge">4 classes</div>
+            </div>
+            
+            <div class="wishlist-item" onclick="togglePrice(this)">
+                <div class="item-icon">👠</div>
+                <div class="item-content">
+                    <h4>heels dance</h4>
+                    <p>professional dance course</p>
+                    <div class="item-price">$200 • 4 classes</div>
+                </div>
+                <div class="item-badge">4 classes</div>
+            </div>
+            
+            <div class="wishlist-item" onclick="togglePrice(this)">
+                <div class="item-icon">🔥</div>
+                <div class="item-content">
+                    <h4>hip hop basic</h4>
+                    <p>professional dance course</p>
+                    <div class="item-price">$200 • 4 classes</div>
+                </div>
+                <div class="item-badge">4 classes</div>
+            </div>
+            
+            <div class="wishlist-item" onclick="togglePrice(this)">
+                <div class="item-icon">✨</div>
+                <div class="item-content">
+                    <h4>voguing</h4>
+                    <p>professional dance course</p>
+                    <div class="item-price">$200 • 4 classes</div>
+                </div>
+                <div class="item-badge">4 classes</div>
+            </div>
+            
+            <div class="wishlist-item" onclick="togglePrice(this)">
+                <div class="item-icon">🔒</div>
+                <div class="item-content">
+                    <h4>locking</h4>
+                    <p>professional dance course</p>
+                    <div class="item-price">$200 • 4 classes</div>
+                </div>
+                <div class="item-badge">4 classes</div>
+            </div>
+            
+            <div class="wishlist-item" onclick="togglePrice(this)">
+                <div class="item-icon">🏠</div>
+                <div class="item-content">
+                    <h4>practice room rental</h4>
+                    <p>space to practice & perfect routines</p>
+                    <div class="item-price">$200 • 20 sessions</div>
+                </div>
+                <div class="item-badge">20 sessions</div>
+            </div>
+
+            <!-- PayPal Support Section -->
+            <div class="paypal-section">
+                <div class="paypal-wrapper">
+                    <p class="paypal-text">support my dance journey <span class="paypal-heart">💖</span></p>
+                    <a href="https://www.paypal.me/LindaAnnCho" target="_blank" class="paypal-button">
+                        <span>press to support</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="dance-emoji">🖤</div>
+            <div class="dance-emoji">✨</div>
+            <div class="dance-emoji">🤍</div>
+            
+            <p class="footer-text">keep dancing</p>
+            <p class="footer-subtext">Tiffany • dancer • korea</p>
+            
+            <div class="footer-bottom">
+                <p>made with 🖤 for Tiffany • © 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Remove loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+            
+            // Navbar background on scroll
+            const navbar = document.getElementById('navbar');
+            if (winScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particle.style.width = Math.random() * 8 + 4 + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle price reveal
+        function togglePrice(element) {
+            // Remove active class from all other items
+            document.querySelectorAll('.wishlist-item').forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle active class on clicked item
+            element.classList.toggle('active');
+        }
+
+        // Click sparkle effect
+        document.addEventListener('click', (e) => {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = ['✨', '🖤', '🤍'][Math.floor(Math.random() * 3)];
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = (e.clientX + Math.random() * 40 - 20) + 'px';
+                    sparkle.style.top = (e.clientY + Math.random() * 40 - 20) + 'px';
+                    sparkle.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.zIndex = '9999';
+                    sparkle.style.animation = 'fadeOut 1s forwards';
+                    sparkle.style.color = ['#ffffff', '#cccccc', '#ff6b9d'][Math.floor(Math.random() * 3)];
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 100);
+            }
+        });
+
+        // Add fadeOut keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                100% { transform: scale(2) rotate(180deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect for shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 20;
+                shape.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(${x * 360}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
