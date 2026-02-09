@@ -606,9 +606,18 @@
 
         .wishlist-intro {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             color: var(--light-gray);
             font-size: 1.1rem;
+        }
+
+        .wishlist-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .wishlist-item {
@@ -620,8 +629,12 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            flex-wrap: wrap;
         }
 
         .wishlist-item::before {
@@ -645,6 +658,18 @@
             border-color: rgba(255,255,255,0.3);
             background: rgba(255, 255, 255, 0.08);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .wishlist-item.active {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .item-main {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            width: 100%;
         }
 
         .item-icon {
@@ -692,11 +717,38 @@
             font-weight: 600;
             white-space: nowrap;
             transition: all 0.3s;
+            margin-left: auto;
         }
 
         .wishlist-item:hover .item-badge {
             background: var(--white);
             color: var(--black);
+        }
+
+        .item-affirmation {
+            width: 100%;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            display: none;
+            text-align: center;
+        }
+
+        .wishlist-item.active .item-affirmation {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .affirmation-emoji {
+            margin-right: 8px;
         }
 
         /* PayPal Button Section */
@@ -774,22 +826,22 @@
             50% { transform: scale(1.2); }
         }
 
-        /* Thank You Modal */
+        /* Support Thank You Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
             z-index: 10001;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: all 0.4s;
         }
 
         .modal-overlay.active {
@@ -801,18 +853,18 @@
             background: linear-gradient(135deg, var(--dark-gray) 0%, var(--medium-gray) 100%);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            padding: 60px 50px;
+            padding: 50px 40px;
             text-align: center;
-            max-width: 500px;
+            max-width: 450px;
             width: 90%;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            transition: transform 0.3s;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            transform: scale(0.8) translateY(50px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
         }
 
         .modal-overlay.active .modal-content {
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
         .modal-emoji {
@@ -828,16 +880,16 @@
 
         .modal-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--white);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .modal-text {
             color: var(--light-gray);
             font-size: 1.1rem;
             line-height: 1.6;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .modal-buttons {
@@ -869,7 +921,7 @@
             box-shadow: 0 15px 40px rgba(0, 112, 186, 0.4);
         }
 
-        .close-btn {
+        .go-back-btn {
             background: transparent;
             color: var(--light-gray);
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -882,7 +934,7 @@
             font-size: 1rem;
         }
 
-        .close-btn:hover {
+        .go-back-btn:hover {
             border-color: var(--white);
             color: var(--white);
             background: rgba(255, 255, 255, 0.05);
@@ -996,13 +1048,24 @@
                 gap: 15px;
                 padding: 25px;
             }
+
+            .item-main {
+                flex-direction: column;
+                width: 100%;
+            }
             
             .item-icon {
                 margin-right: 0;
+                margin-bottom: 15px;
             }
-            
+
             .item-badge {
+                margin-left: 0;
                 margin-top: 10px;
+            }
+
+            .item-affirmation {
+                text-align: center;
             }
 
             .cta-container {
@@ -1021,11 +1084,11 @@
             }
 
             .modal-content {
-                padding: 40px 30px;
+                padding: 40px 25px;
             }
 
             .modal-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
         }
 
@@ -1178,75 +1241,97 @@
         
         <div class="wishlist-container reveal">
             <p class="wishlist-intro">professional dance courses & practice space</p>
+            <p class="wishlist-subtitle">4 lessons per month for a full year</p>
             
-            <div class="wishlist-item">
-                <div class="item-icon">💃</div>
-                <div class="item-content">
-                    <h4>contemporary jazz</h4>
-                    <p>professional dance course</p>
+            <div class="wishlist-item" onclick="toggleAffirmation(this)">
+                <div class="item-main">
+                    <div class="item-icon">💃</div>
+                    <div class="item-content">
+                        <h4>contemporary jazz</h4>
+                        <p>professional dance course</p>
+                    </div>
+                    <div class="item-badge">4 classes/month</div>
                 </div>
-                <div class="item-badge">4 classes</div>
+                <div class="item-affirmation"></div>
             </div>
             
-            <div class="wishlist-item">
-                <div class="item-icon">🕺</div>
-                <div class="item-content">
-                    <h4>wacking</h4>
-                    <p>professional dance course</p>
+            <div class="wishlist-item" onclick="toggleAffirmation(this)">
+                <div class="item-main">
+                    <div class="item-icon">🕺</div>
+                    <div class="item-content">
+                        <h4>wacking</h4>
+                        <p>professional dance course</p>
+                    </div>
+                    <div class="item-badge">4 classes/month</div>
                 </div>
-                <div class="item-badge">4 classes</div>
+                <div class="item-affirmation"></div>
             </div>
             
-            <div class="wishlist-item">
-                <div class="item-icon">👠</div>
-                <div class="item-content">
-                    <h4>heels dance</h4>
-                    <p>professional dance course</p>
+            <div class="wishlist-item" onclick="toggleAffirmation(this)">
+                <div class="item-main">
+                    <div class="item-icon">👠</div>
+                    <div class="item-content">
+                        <h4>heels dance</h4>
+                        <p>professional dance course</p>
+                    </div>
+                    <div class="item-badge">4 classes/month</div>
                 </div>
-                <div class="item-badge">4 classes</div>
+                <div class="item-affirmation"></div>
             </div>
             
-            <div class="wishlist-item">
-                <div class="item-icon">🔥</div>
-                <div class="item-content">
-                    <h4>hip hop basic</h4>
-                    <p>professional dance course</p>
+            <div class="wishlist-item" onclick="toggleAffirmation(this)">
+                <div class="item-main">
+                    <div class="item-icon">🔥</div>
+                    <div class="item-content">
+                        <h4>hip hop basic</h4>
+                        <p>professional dance course</p>
+                    </div>
+                    <div class="item-badge">4 classes/month</div>
                 </div>
-                <div class="item-badge">4 classes</div>
+                <div class="item-affirmation"></div>
             </div>
             
-            <div class="wishlist-item">
-                <div class="item-icon">✨</div>
-                <div class="item-content">
-                    <h4>voguing</h4>
-                    <p>professional dance course</p>
+            <div class="wishlist-item" onclick="toggleAffirmation(this)">
+                <div class="item-main">
+                    <div class="item-icon">✨</div>
+                    <div class="item-content">
+                        <h4>voguing</h4>
+                        <p>professional dance course</p>
+                    </div>
+                    <div class="item-badge">4 classes/month</div>
                 </div>
-                <div class="item-badge">4 classes</div>
+                <div class="item-affirmation"></div>
             </div>
             
-            <div class="wishlist-item">
-                <div class="item-icon">🔒</div>
-                <div class="item-content">
-                    <h4>locking</h4>
-                    <p>professional dance course</p>
+            <div class="wishlist-item" onclick="toggleAffirmation(this)">
+                <div class="item-main">
+                    <div class="item-icon">🔒</div>
+                    <div class="item-content">
+                        <h4>locking</h4>
+                        <p>professional dance course</p>
+                    </div>
+                    <div class="item-badge">4 classes/month</div>
                 </div>
-                <div class="item-badge">4 classes</div>
+                <div class="item-affirmation"></div>
             </div>
             
-            <div class="wishlist-item">
-                <div class="item-icon">🏠</div>
-                <div class="item-content">
-                    <h4>practice room rental</h4>
-                    <p>space to practice & perfect routines</p>
+            <div class="wishlist-item" onclick="toggleAffirmation(this)">
+                <div class="item-main">
+                    <div class="item-icon">🏠</div>
+                    <div class="item-content">
+                        <h4>practice room rental</h4>
+                        <p>space to practice & perfect routines</p>
+                    </div>
+                    <div class="item-badge">20 sessions</div>
                 </div>
-                <div class="item-badge">20 sessions</div>
+                <div class="item-affirmation"></div>
             </div>
 
             <!-- PayPal Support Section -->
             <div class="paypal-section">
                 <div class="paypal-wrapper">
                     <p class="paypal-text">support my dance journey <span class="paypal-heart">💖</span></p>
-                    <button class="paypal-button" onclick="openModal()">
+                    <button class="paypal-button" onclick="openSupportModal()">
                         <span>press to support</span>
                     </button>
                 </div>
@@ -1254,8 +1339,8 @@
         </div>
     </section>
 
-    <!-- Thank You Modal -->
-    <div class="modal-overlay" id="thankYouModal">
+    <!-- Support Thank You Modal -->
+    <div class="modal-overlay" id="supportModal">
         <div class="modal-content">
             <div class="modal-emoji">💃</div>
             <h3 class="modal-title">thank you!</h3>
@@ -1265,7 +1350,7 @@
                     <span>continue</span>
                     <span>→</span>
                 </a>
-                <button class="close-btn" onclick="closeModal()">go back</button>
+                <button class="go-back-btn" onclick="closeSupportModal()">go back</button>
             </div>
         </div>
     </div>
@@ -1287,6 +1372,37 @@
     </footer>
 
     <script>
+        // Affirmations database
+        const affirmations = [
+            "every step you take creates ripples of joy",
+            "your support moves mountains and hearts",
+            "dance is the hidden language of the soul",
+            "you are making dreams tangible",
+            "kindness looks beautiful on you",
+            "your generosity creates endless possibilities",
+            "art exists because of hearts like yours",
+            "you are part of something magical",
+            "every contribution writes a new story",
+            "your belief in others is a superpower",
+            "you are helping build a legacy of movement",
+            "beauty grows wherever you plant support",
+            "your impact will dance through generations",
+            "you make the impossible feel possible",
+            "compassion is your greatest choreography",
+            "you are the music behind the movement",
+            "every gift returns as inspiration",
+            "you are creating space for art to breathe",
+            "your support is a standing ovation",
+            "you turn dreams into reality",
+            "the world needs more hearts like yours",
+            "you are investing in pure expression",
+            "your kindness echoes in every step I take",
+            "you make the journey brighter",
+            "support like yours changes everything"
+        ];
+
+        const emojis = ['✨', '💫', '🌟', '💖', '🎭', '🎪', '🌈', '💃', '🕊️', '🦋'];
+
         // Remove loader
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -1349,21 +1465,47 @@
             });
         });
 
-        // Modal functions
-        function openModal() {
-            document.getElementById('thankYouModal').classList.add('active');
+        // Toggle affirmation display
+        function toggleAffirmation(element) {
+            // Close all other items first
+            document.querySelectorAll('.wishlist-item').forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            const isActive = element.classList.contains('active');
+            
+            if (!isActive) {
+                // Generate random affirmation
+                const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                const affirmationDiv = element.querySelector('.item-affirmation');
+                affirmationDiv.innerHTML = `<span class="affirmation-emoji">${randomEmoji}</span>${randomAffirmation}`;
+                
+                element.classList.add('active');
+            } else {
+                element.classList.remove('active');
+            }
+        }
+
+        // Support modal functions
+        function openSupportModal() {
+            document.getElementById('supportModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('thankYouModal').classList.remove('active');
+        function closeSupportModal() {
+            document.getElementById('supportModal').classList.remove('active');
             document.body.style.overflow = '';
         }
 
         // Close modal when clicking outside
-        document.getElementById('thankYouModal').addEventListener('click', function(e) {
+        document.getElementById('supportModal').addEventListener('click', function(e) {
             if (e.target === this) {
-                closeModal();
+                closeSupportModal();
             }
         });
 
