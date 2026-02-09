@@ -620,11 +620,8 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .wishlist-item::before {
@@ -648,11 +645,6 @@
             border-color: rgba(255,255,255,0.3);
             background: rgba(255, 255, 255, 0.08);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .wishlist-item.active {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255,255,255,0.4);
         }
 
         .item-icon {
@@ -689,24 +681,6 @@
         .item-content p {
             color: var(--light-gray);
             font-size: 0.95rem;
-            transition: all 0.3s;
-        }
-
-        .item-price {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 8px;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            display: none;
-        }
-
-        .wishlist-item.active .item-price {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .item-badge {
@@ -723,15 +697,6 @@
         .wishlist-item:hover .item-badge {
             background: var(--white);
             color: var(--black);
-        }
-
-        .tap-hint {
-            text-align: center;
-            color: var(--light-gray);
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            opacity: 0.7;
-            font-style: italic;
         }
 
         /* PayPal Button Section */
@@ -773,6 +738,7 @@
             overflow: hidden;
             cursor: pointer;
             z-index: 1;
+            border: none;
         }
 
         .paypal-button::before {
@@ -798,10 +764,6 @@
             background: linear-gradient(135deg, #0070ba 0%, #004c8c 100%);
         }
 
-        .paypal-icon {
-            font-size: 1.5rem;
-        }
-
         .paypal-heart {
             color: #ff6b9d;
             animation: pulse 1.5s infinite;
@@ -810,6 +772,120 @@
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
+        }
+
+        /* Thank You Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--medium-gray) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 60px 50px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .continue-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 112, 186, 0.3);
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 112, 186, 0.4);
+        }
+
+        .close-btn {
+            background: transparent;
+            color: var(--light-gray);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        .close-btn:hover {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         /* Footer */
@@ -942,6 +1018,14 @@
             .paypal-button {
                 padding: 18px 35px;
                 font-size: 1.1rem;
+            }
+
+            .modal-content {
+                padding: 40px 30px;
+            }
+
+            .modal-title {
+                font-size: 2rem;
             }
         }
 
@@ -1094,74 +1178,66 @@
         
         <div class="wishlist-container reveal">
             <p class="wishlist-intro">professional dance courses & practice space</p>
-            <p class="tap-hint">tap an item to see details</p>
             
-            <div class="wishlist-item" onclick="togglePrice(this)">
+            <div class="wishlist-item">
                 <div class="item-icon">💃</div>
                 <div class="item-content">
                     <h4>contemporary jazz</h4>
                     <p>professional dance course</p>
-                    <div class="item-price">$200 • 4 classes</div>
                 </div>
                 <div class="item-badge">4 classes</div>
             </div>
             
-            <div class="wishlist-item" onclick="togglePrice(this)">
+            <div class="wishlist-item">
                 <div class="item-icon">🕺</div>
                 <div class="item-content">
                     <h4>wacking</h4>
                     <p>professional dance course</p>
-                    <div class="item-price">$200 • 4 classes</div>
                 </div>
                 <div class="item-badge">4 classes</div>
             </div>
             
-            <div class="wishlist-item" onclick="togglePrice(this)">
+            <div class="wishlist-item">
                 <div class="item-icon">👠</div>
                 <div class="item-content">
                     <h4>heels dance</h4>
                     <p>professional dance course</p>
-                    <div class="item-price">$200 • 4 classes</div>
                 </div>
                 <div class="item-badge">4 classes</div>
             </div>
             
-            <div class="wishlist-item" onclick="togglePrice(this)">
+            <div class="wishlist-item">
                 <div class="item-icon">🔥</div>
                 <div class="item-content">
                     <h4>hip hop basic</h4>
                     <p>professional dance course</p>
-                    <div class="item-price">$200 • 4 classes</div>
                 </div>
                 <div class="item-badge">4 classes</div>
             </div>
             
-            <div class="wishlist-item" onclick="togglePrice(this)">
+            <div class="wishlist-item">
                 <div class="item-icon">✨</div>
                 <div class="item-content">
                     <h4>voguing</h4>
                     <p>professional dance course</p>
-                    <div class="item-price">$200 • 4 classes</div>
                 </div>
                 <div class="item-badge">4 classes</div>
             </div>
             
-            <div class="wishlist-item" onclick="togglePrice(this)">
+            <div class="wishlist-item">
                 <div class="item-icon">🔒</div>
                 <div class="item-content">
                     <h4>locking</h4>
                     <p>professional dance course</p>
-                    <div class="item-price">$200 • 4 classes</div>
                 </div>
                 <div class="item-badge">4 classes</div>
             </div>
             
-            <div class="wishlist-item" onclick="togglePrice(this)">
+            <div class="wishlist-item">
                 <div class="item-icon">🏠</div>
                 <div class="item-content">
                     <h4>practice room rental</h4>
                     <p>space to practice & perfect routines</p>
-                    <div class="item-price">$200 • 20 sessions</div>
                 </div>
                 <div class="item-badge">20 sessions</div>
             </div>
@@ -1170,13 +1246,29 @@
             <div class="paypal-section">
                 <div class="paypal-wrapper">
                     <p class="paypal-text">support my dance journey <span class="paypal-heart">💖</span></p>
-                    <a href="https://www.paypal.me/LindaAnnCho" target="_blank" class="paypal-button">
+                    <button class="paypal-button" onclick="openModal()">
                         <span>press to support</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Thank You Modal -->
+    <div class="modal-overlay" id="thankYouModal">
+        <div class="modal-content">
+            <div class="modal-emoji">💃</div>
+            <h3 class="modal-title">thank you!</h3>
+            <p class="modal-text">thank you for making this goal possible with your support</p>
+            <div class="modal-buttons">
+                <a href="https://www.paypal.me/LindaAnnCho" target="_blank" class="continue-btn">
+                    <span>continue</span>
+                    <span>→</span>
+                </a>
+                <button class="close-btn" onclick="closeModal()">go back</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer" id="contact">
@@ -1257,18 +1349,23 @@
             });
         });
 
-        // Toggle price reveal
-        function togglePrice(element) {
-            // Remove active class from all other items
-            document.querySelectorAll('.wishlist-item').forEach(item => {
-                if (item !== element) {
-                    item.classList.remove('active');
-                }
-            });
-            
-            // Toggle active class on clicked item
-            element.classList.toggle('active');
+        // Modal functions
+        function openModal() {
+            document.getElementById('thankYouModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
+
+        function closeModal() {
+            document.getElementById('thankYouModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('thankYouModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
 
         // Click sparkle effect
         document.addEventListener('click', (e) => {
